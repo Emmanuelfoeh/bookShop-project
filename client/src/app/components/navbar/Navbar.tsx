@@ -23,12 +23,6 @@ const Navbar = () => {
   const toggleNav = () => {
     showMobileNav(!mobileNav);
   };
-  const links = [
-    { label: "Home", href: "/" },
-    { label: "Add Book", href: "/feature" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "FQA", href: "/#fqa" },
-  ];
 
   const items: MenuProps["items"] = [
     {
@@ -104,7 +98,10 @@ const Navbar = () => {
 
           <Link
             href={"/orders"}
-            className=" text-[#003060] font-semibold hover:text-[#e55b13]"
+            className={classNames({
+              "text-[#003060] font-semibold hover:text-[#e55b13]": true,
+              "text-[#e55b13]": currentPath == "/orders",
+            })}
           >
             Orders
           </Link>
@@ -124,7 +121,10 @@ const Navbar = () => {
             {user?.user?.role.toUpperCase() === "ADMIN" && (
               <Link
                 href={"/add-book"}
-                className=" font-semibold text-[#003060] p-2 hover:text-[#e55b13]"
+                className={classNames({
+                  "text-[#003060] font-semibold hover:text-[#e55b13]": true,
+                  "text-[#e55b13]": currentPath == "/add-book",
+                })}
               >
                 Add Book
               </Link>
@@ -132,7 +132,10 @@ const Navbar = () => {
 
             <button
               onClick={orders}
-              className=" text-[#003060] font-semibold p-2 hover:text-[#e55b13]"
+              className={classNames({
+                "text-[#003060] font-semibold hover:text-[#e55b13]": true,
+                "text-[#e55b13]": currentPath == "/orders",
+              })}
             >
               Orders
             </button>

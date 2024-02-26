@@ -78,7 +78,7 @@ const Order = () => {
           return (
             <div
               key={order.id}
-              className="hover:shadow rounded border-2 border-[#ccc] text-[#003060] p-2"
+              className="hover:shadow rounded border border-[#ccc] text-[#003060] p-2"
             >
               <h5>
                 Owner:{" "}
