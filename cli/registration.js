@@ -1,14 +1,12 @@
 import inquirer from "inquirer";
-import { db } from "../server/src/config/db.config";
-import { Users } from "../server/src/model/user/user.model";
 
 import dotenv from "dotenv";
 dotenv.config({ path: "../server/.env" });
 
 // MongoDB Connection
-db.then(() => console.log("Connected to MongoDB...")).catch((err) =>
-  console.error("Could not connect to MongoDB...", err)
-);
+// db.then(() => console.log("Connected to MongoDB...")).catch((err) =>
+//   console.error("Could not connect to MongoDB...", err)
+// );
 
 const questions = [
   {
@@ -48,20 +46,34 @@ const questions = [
   },
 ];
 inquirer.prompt(questions).then((answers) => {
-  const newUser = new Users({
+  const postData = {
     userName: answers.username,
     email: answers.email,
     password: answers.password,
     role: "Admin",
-  });
-  newUser
-    .save()
-    .then(() => {
-      console.log("User registered successfully.");
+  };
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData),
+  };
+
+  fetch("http://localhost:8088/api/v1/users", requestOptions)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
+    })
+    .then((data) => {
+      console.log("User registered successfully.", data);
       process.exit();
     })
-    .catch((err) => {
-      console.error("Error registering user:", err.message);
+    .catch((error) => {
+      console.error("Error registering user:", error.message);
       process.exit(1);
     });
 });
