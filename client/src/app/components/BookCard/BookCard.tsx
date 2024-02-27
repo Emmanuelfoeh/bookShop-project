@@ -106,7 +106,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, ind }) => {
                   {book?.quantity}
                 </p>
               </div>
-              <div className="flex gap-3 ">
+              <div className="flex flex-col gap-2 ">
                 <p className="text-sm font-semibold">Description: </p>
                 <p className="font-bold text-sm text-[#003060]">
                   {book?.description}

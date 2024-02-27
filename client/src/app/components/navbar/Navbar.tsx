@@ -107,12 +107,14 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center">
-            <Link
-              href={"/signUp"}
-              className=" px-2  py-1 rounded  font-bold bg-[#e55b13] text-white"
-            >
-              Sign up
-            </Link>
+            {user.user?.email === undefined && (
+              <Link
+                href={"/signUp"}
+                className=" px-2  py-1 rounded  font-bold bg-[#e55b13] text-white"
+              >
+                Sign up
+              </Link>
+            )}
           </div>
         </nav>
 

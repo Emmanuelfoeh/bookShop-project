@@ -6,7 +6,7 @@ import Layout from "./components/Layout/Layout";
 export default function Home() {
   return (
     <Layout>
-      <section className="flex min-h-screen flex-col ">
+      <section className="flex flex-col ">
         <div className="Hero relative">
           <section className="w-[95%] mx-auto bookIntro grid md:grid-cols-2  sm:grid-cols-1 sm:justify-center md:justify-between py-10">
             <div className="introText order-2 md:order-1 flex flex-col justify-center ">

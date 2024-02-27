@@ -15,7 +15,7 @@ export class UserService {
     }
   }
 
-  //get all books from the database
+  //get all users from the database
   async getUsers() {
     try {
       const users = await Users.find({}).select("-password");
@@ -25,7 +25,7 @@ export class UserService {
     }
   }
 
-  //get a single book
+  //get a single user
   async getUser(id: string) {
     try {
       const user = await Users.findById({ _id: id }).select("-password");
@@ -38,7 +38,7 @@ export class UserService {
     }
   }
 
-  //update a book
+  //update a user
   async updateUser(id: string, data: any) {
     try {
       const user = await Users.findByIdAndUpdate({ _id: id }, data, {
@@ -53,12 +53,12 @@ export class UserService {
     }
   }
 
-  //delete a book by using the find by id and delete
+  //delete a user by using the find by id and delete
   async deleteUser(id: string) {
     try {
       const user = await Users.findByIdAndDelete(id);
       if (!user) {
-        return `book with id: ${id} not available`;
+        return `book with id: ${id} does not exist`;
       }
     } catch (error: any) {
       throw new Error(error);
@@ -79,7 +79,7 @@ export class UserService {
       let hashedPassword: any = user?.password;
 
       if (await verify(hashedPassword, password)) {
-        // console.log("the login user", user);
+        
         const token = jwt.sign(
           { userId: user._id, email: user.email },
           `${Secret}`,

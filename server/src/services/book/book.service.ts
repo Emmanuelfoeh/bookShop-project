@@ -30,7 +30,7 @@ export class BookService {
     try {
       const book = await Books.findById({ _id: id });
       if (!book) {
-        return `book with id: ${id} not available`;
+        throw new Error(`book with id: ${id} does not exist`); ;
       }
       return book;
     } catch (error: any) {
@@ -45,7 +45,7 @@ export class BookService {
         new: true,
       });
       if (!book) {
-        return `book with id: ${id} not available`;
+        throw new Error(`book with id: ${id} does not exist`) 
       }
       return book;
     } catch (error: any) {
@@ -56,10 +56,10 @@ export class BookService {
   //delete a book by using the find by id and delete
   async deleteBook(id: string) {
     try {
-      console.log("the book id to be deleted", id);
+     
       const book = await Books.findByIdAndDelete(id);
       if (!book) {
-        throw new Error(`book with id: ${id} not available`);
+        throw new Error(`book with id: ${id} does not exist`);
       }
     } catch (error: any) {
       throw new Error(error);
@@ -79,7 +79,6 @@ export class BookService {
 
       return searchResult;
     } catch (error: any) {
-      console.error("Error in search endpoint:", error);
       throw new Error(error);
     }
   }

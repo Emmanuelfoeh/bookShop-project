@@ -25,7 +25,6 @@ export class OrderService {
         });;
       return userOrder;
     } catch (error: any) {
-      console.error(error);
       throw new Error(error);
     }
   }
@@ -43,7 +42,6 @@ export class OrderService {
         });
       return orders;
     } catch (error: any) {
-      console.error(error);
       throw new Error(error);
     }
   }

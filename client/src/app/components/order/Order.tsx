@@ -34,21 +34,26 @@ const Order = () => {
       let user = JSON.parse(loginUser);
       setUser(user[0]);
     }
-
-    let apiUrl = ORDER_BASE_URL;
-    if (user?.user.role && user?.user?.role.toUpperCase() !== "ADMIN") {
-      console.log("the user id", user?.user?._id);
-      apiUrl = `${ORDER_BASE_URL}/${user?.user?._id}`;
-    }
-
-    getOrders(apiUrl);
   }, []);
+
+  useEffect(() => {
+    if (user?.user.role) {
+      let apiUrl;
+      if (user?.user.role && user?.user?.role.toUpperCase() !== "ADMIN") {
+        console.log("the user id", user?.user?._id);
+        apiUrl = `${ORDER_BASE_URL}/${user?.user?._id}`;
+      } else {
+        apiUrl = ORDER_BASE_URL;
+      }
+      getOrders(apiUrl);
+    }
+  }, [user?.user.role]);
 
   if (isLoading) return <Skeleton active />;
   if (!orders) return <p>No Orders Available</p>;
 
-//   console.log("the user logo", user);
-  console.log("orders in order", orders);
+  // console.log("the user logo", user);
+  // console.log("orders in order", orders);
   return (
     <div>
       {contextHolder}
@@ -78,7 +83,7 @@ const Order = () => {
           return (
             <div
               key={order.id}
-              className="hover:shadow rounded border border-[#ccc] text-[#003060] p-2"
+              className="hover:shadow text-sm rounded border border-[#ccc] text-[#003060] p-2"
             >
               <h5>
                 Owner:{" "}

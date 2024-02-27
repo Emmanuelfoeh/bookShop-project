@@ -14,7 +14,7 @@ const questions = [
     name: "username",
     message: "Enter username:",
     validate: function (value) {
-      var pass = value.match(/^[a-zA-Z0-9]+$/i);
+      let pass = value.match(/^[a-zA-Z0-9]+$/i);
       if (pass) {
         return true;
       }
@@ -26,7 +26,7 @@ const questions = [
     name: "email",
     message: "Enter user email:",
     validate: function (value) {
-      var pass = value.match(/\S+@\S+\.\S+/);
+      let pass = value.match(/\S+@\S+\.\S+/);
       if (pass) {
         return true;
       }

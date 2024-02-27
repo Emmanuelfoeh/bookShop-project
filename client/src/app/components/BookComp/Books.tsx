@@ -55,14 +55,14 @@ const Books = () => {
     <section className="flex flex-col">
       {contextHolder}
       <div className="flex justify-between mb-5">
-        <h5 className="text-2xl">Available Books</h5>
+        <h5 className="text-2xl text-[#003060]">Available Books</h5>
         <div>
           <input
             type="search"
             name="book"
             value={searchParams}
             onChange={handleSearchChange}
-            className="p-2 border border-gray-200 outline-none"
+            className="p-2 border-2 border-gray-200 outline-none"
             placeholder="search..."
           />
         </div>

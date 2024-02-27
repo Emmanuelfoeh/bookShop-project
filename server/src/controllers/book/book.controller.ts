@@ -18,7 +18,6 @@ class BookController {
     try {
       //validating the request
       const { error, value } = BookSchemaValidate.validate(data);
-      console.log("the book values and error", error);
       if (error) {
         res.status(400).send(error);
       } else {
@@ -55,7 +54,6 @@ class BookController {
   //update book
   updateBook = async (req: Request, res: Response) => {
     const id = req.params.id;
-    console.log("book id", id);
     const data = {
       title: req.body.title,
       price: req.body.price,
